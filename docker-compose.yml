@@ -1,0 +1,60 @@
+version: '3.7'
+services:
+  datastore:
+    image: mbredel/datastore:latest
+    ports:
+      - "8080:8080" #gRPC
+      - "9090:9090" #Thrift
+      - "6543:6543" #TCP+Protobuf
+    environment:
+      - "GRPC_PORT:8080"
+      - "THRIFT_PORT:9090"
+      - "PROTO_PORT:6543"
+
+  datasource0:
+    image: datasource:datasource0
+    container_name: DataSource_0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - 'datasources=datasource0 datasource1 datasource2'
+      - 'datastoreHost=datastore'
+      - 'datastorePort=9090'
+      - 'file=/usr/app/data.csv'
+      - 'pid=0'
+      - 'WAIT_HOSTS=datastore:9090'
+    depends_on:
+      - "datastore"
+
+  datasource1:
+    image: datasource:datasource1
+    container_name: DataSource_1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - 'datasources=datasource0 datasource1 datasource2'
+      - 'datastoreHost=datastore'
+      - 'datastorePort=9090'
+      - 'file=/usr/app/data.csv'
+      - 'pid=1'
+      - 'WAIT_HOSTS=datastore:9090'
+    depends_on:
+      - "datastore"
+
+  datasource2:
+    image: datasource:datasource2
+    container_name: DataSource_2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - 'datasources=datasource0 datasource1 datasource2'
+      - 'datastoreHost=datastore'
+      - 'datastorePort=9090'
+      - 'file=/usr/app/data.csv'
+      - 'pid=2'
+      - 'WAIT_HOSTS=datastore:9090'
+    depends_on:
+      - "datastore"
