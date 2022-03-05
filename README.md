@@ -36,7 +36,7 @@ Basically, Lamport's "implementation rules" (IR1 and IR2) from p. 560 were follo
 The test protocol can be found under: `Test protocol/Test protocol_VS_mEt.pdf`
 
 ## Legal Information
-- The project is subject to the license GNU GLP V3
+The project is subject to the license GNU GLP V3
 
 ## Acknowledgements / Citations
 - *https://gitlab.fbi.h-da.de/m.bredel/csv-reader/-/blob/master/java/src/main/java/de/hda/fbi/ds/mbredel/Main.java* provided orientation for the implementation of the CSVReader
