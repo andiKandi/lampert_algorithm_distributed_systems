@@ -24,8 +24,11 @@ Basically, Lamport's "implementation rules" (IR1 and IR2) from p. 560 were follo
 
 ## Run
 ```bash
-[sudo] docker-compose up --build` oder `[sudo -E] make start` (Starten des Containers)
-[sudo] docker-compose down` oder `[sudo -E] make stop`(Beenden des Containers)
+/*Start the containers*/
+[sudo] docker-compose up --build` || `[sudo -E] make start`
+ 
+/*Stop the containers*/
+[sudo] docker-compose down` || `[sudo -E] make stop`
 ```
 
 #### Use of different CSV files
